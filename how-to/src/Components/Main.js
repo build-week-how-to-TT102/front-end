@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 // This is a "relative" import, so relative to this file, you are in the same directory
 //
 // import Login from './Components/Login'; --> Becomes...
-import Login from './Login';
+//import Login from './Login'; ---DIDN'T NEED THIS ANYWAYS. LEAVING THESE NOTES HERE FOR MY OWN REFERENCES.
 // #2
 // ./node_modules/react-router-dom/esm/react-router-dom.js
 // Module not found: Can't resolve 'C:\code\front-end\how-to\node_modules\react-scripts\node_modules\babel-loader\lib\index.js' in 'C:\code\front-end\how-to' 
@@ -29,13 +29,13 @@ export default function Main () {
             <h2>Life Hacks</h2>
                 <div className='Login'>
                     <Link to={'/Login'}>
-                        <Login>Login</Login>
+                        <button>Login</button>
                     </Link>
                 </div>
 
                 {/*<div className='Register'>
                     <Link to={'/Register'}>
-                        <Register>Register</Register>
+                        <button>Register</button>
                     </Link>
                 </div>*/}
         </>
