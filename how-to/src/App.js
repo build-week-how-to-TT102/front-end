@@ -22,9 +22,9 @@ function App() {
               <Login/>
             </Route>
 
-            <Route path={'/SubmitPost'}>
+            {/*<Route path={'/SubmitPost'}>
               <SubmitPost/>
-            </Route>
+              </Route>*/}
 
           </Switch>
         </Router>

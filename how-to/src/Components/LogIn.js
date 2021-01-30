@@ -1,9 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-//import * as yup from 'yup'
-//import axios from 'axios';
+import * as yup from 'yup'
 
-//add form schema here for validation - outside the function
+
+//FORM SCHEMA
+const formSchema = yup.object().shape({
+    username: yup
+        .string()
+        .required('Invalid Username'),
+    password: yup
+        .string()
+        .required('Incorrect Password'),
+
+});
 
 
 export default function Login() {
@@ -28,15 +37,83 @@ export default function Login() {
             .then(response => {
                 console.log('I am logging in: ', response.data)
             })
-        setFormState(formState)
+            setFormState(formState)
     };
 
+    //VALIDATE FUNCTION - with Yup
+    const validate = (evt) => {
+
+        const userInput = {
+            ...formState,
+            [evt.target.name]: evt.target.value
+        }
+
+        formSchema
+            .isValid(userInput)
+            .then(res => {
+                setErrorState({
+                    ...errorState,
+                    [evt.target.name]: ''
+                })
+            })
+            .catch(err => {
+                console.log(err.errors)
+                setErrorState({
+                    ...errorState,
+                    [evt.target.name]: err.errors[0]
+                })
+            })
+    };
+
+    //CHANGE HANDLER
+    const inputChange = (evt) => {
+        evt.persist();
+        validate(evt);
+
+        const theValue = evt.target.value;
+        setFormState({...formState, [evt.target.name]: theValue});
+    }
 
     return(
         <>
             <div>
-                Login
+                <h1>Login</h1>
+                <br></br>
             </div>
+
+                <form className='form-container' onSubmit={onSubmit}>
+                    <div className='username'>
+                        <label htmlFor='username'>
+                            Username: 
+                            <textarea
+                                name='username'
+                                value={formState.value}
+                                onChange={inputChange}
+                                >
+                            </textarea>
+                        </label>
+                    </div>
+
+                     <br></br>
+
+                    <div className='password'>
+                        <label htmlFor='password'>
+                            Password: 
+                            <textarea
+                                name='password'
+                                value={formState.value}
+                                onChange={inputChange}
+                                >
+                            </textarea>
+                        </label>
+                    </div>
+                    
+                    <br></br>
+
+                    <div className='submit-button'>
+                        <button>Log In</button>
+                    </div>
+                </form>
         </>
     );
 }
