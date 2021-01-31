@@ -1,6 +1,29 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Container, Form, ButtonToggle } from "reactstrap";
+import styled from "styled-components";
+
+const CustomBox = styled.div`
+  width: 400px;
+  margin: 0px auto;
+  border-radius: 10px;
+  padding: 40px;
+  border: 10px;
+`;
+
+const RegisterPrompt = styled.h2`
+  color: purple;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-right: 75px;
+`;
+
+const Inputs = styled.div`
+  margin-bottom: 18px;
+  input {
+    width: 275px;
+  }
+`;
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -77,83 +100,101 @@ const Register = () => {
   };
 
   return (
-    <Container className="text-center">
-      <div>
-        <Form onSubmit={onSubmit}>
-          <div>Register here</div>
-          <label htmlFor="fname">
-            First Name
-            <input
-              onChange={onInputChange}
-              name="fname"
-              id="fname"
-              type="text"
-              value={formData.fname}
-              placeholder="First name"
-            />
-          </label>
+    <CustomBox>
+      <Container>
+        <div>
+          <Form onSubmit={onSubmit}>
+            <RegisterPrompt>Register Now!</RegisterPrompt>
+            <label htmlFor="fname">
+              First Name
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="fname"
+                  id="fname"
+                  type="text"
+                  value={formData.fname}
+                  placeholder="First name"
+                />
+              </Inputs>
+            </label>
 
-          <label htmlFor="lname">
-            Last Name
-            <input
-              onChange={onInputChange}
-              name="lname"
-              id="lname"
-              type="text"
-              value={formData.lname}
-              placeholder="Lirst name"
-            />
-          </label>
-          <label htmlFor="email">
-            Email
-            <input
-              onChange={onInputChange}
-              name="email"
-              id="email"
-              type="email"
-              value={formData.email}
-              placeholder="Email address"
-            />
-          </label>
-          <label htmlFor="username">
-            Create Username
-            <input
-              onChange={onInputChange}
-              name="username"
-              id="username"
-              type="text"
-              value={formData.username}
-              placeholder="Username"
-            />
-          </label>
-          <label htmlFor="paswword">
-            Create password
-            <input
-              onChange={onInputChange}
-              name="password"
-              id="password"
-              type="password"
-              value={formData.password}
-              placeholder="Enter password"
-            />
-          </label>
-          <label htmlFor="confirmPassword">
-            Confirm Password
-            <input
-              onChange={onInputChange}
-              name="confirmPassword"
-              id="confirmPassword"
-              type="password"
-              value={formData.confirmPassword}
-              placeholder="Re-enter password"
-            />
-          </label>
-          <ButtonToggle disabled={isButtonDisabled} color="info" type="submit">
-            Submit
-          </ButtonToggle>
-        </Form>
-      </div>
-    </Container>
+            <label htmlFor="lname">
+              Last Name
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="lname"
+                  id="lname"
+                  type="text"
+                  value={formData.lname}
+                  placeholder="Lirst name"
+                />
+              </Inputs>
+            </label>
+            <label htmlFor="email">
+              Email
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="email"
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  placeholder="Email address"
+                />
+              </Inputs>
+            </label>
+            <label htmlFor="username">
+              Create Username
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="username"
+                  id="username"
+                  type="text"
+                  value={formData.username}
+                  placeholder="Username"
+                />
+              </Inputs>
+            </label>
+            <label htmlFor="paswword">
+              Create password
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="password"
+                  id="password"
+                  type="password"
+                  value={formData.password}
+                  placeholder="Enter password"
+                />
+              </Inputs>
+            </label>
+            <label htmlFor="confirmPassword">
+              Confirm Password
+              <Inputs>
+                <input
+                  onChange={onInputChange}
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  placeholder="Re-enter password"
+                />
+              </Inputs>
+            </label>
+            <ButtonToggle
+              disabled={isButtonDisabled}
+              color="info"
+              type="submit"
+            >
+              Submit
+            </ButtonToggle>
+          </Form>
+        </div>
+      </Container>
+    </CustomBox>
   );
 };
 
