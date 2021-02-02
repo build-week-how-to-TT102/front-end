@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { Container, Form, ButtonToggle } from "reactstrap";
 import styled from "styled-components";
+import axios from "axios";
 
 const CustomBox = styled.div`
   width: 400px;
@@ -21,7 +22,7 @@ const RegisterPrompt = styled.h2`
 const Inputs = styled.div`
   margin-bottom: 18px;
   input {
-    width: 275px;
+  width: 275px;
   }
 `;
 
@@ -158,8 +159,8 @@ const Register = () => {
                 />
               </Inputs>
             </label>
-            <label htmlFor="paswword">
-              Create password
+            <label htmlFor="password">
+              Create Password
               <Inputs>
                 <input
                   onChange={onInputChange}

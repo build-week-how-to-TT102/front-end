@@ -1,5 +1,6 @@
 import './App.css';
 import Register from "./Components/Register"
+import SubmitPost from "./Components/SubmitPost"
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Register />
+    <SubmitPost />
   );
 }
 
