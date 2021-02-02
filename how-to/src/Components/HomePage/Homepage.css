@@ -1,0 +1,83 @@
+body {
+  background: #323232;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background: #C4C4C4;
+  width: 100%;
+  height: 50px;
+}
+
+.LifeHacksText {
+  padding-top: 10px;
+}
+
+.SearchText {
+  padding-top: 10px;
+}
+
+.Logout {
+  padding: 0px 20px;
+  margin: 10px 0px
+}
+
+.CreatePostDiv {
+  display: flex;
+  justify-content: center;
+  margin: 20px 20px 20px 20px;
+}
+
+.PostContainer {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  margin-left: 5%;
+  background: #FFFFFF;
+}
+
+.PostContainerGrey{
+  display: flex;
+  flex-direction: column;
+  background: #C4C4C4;
+  height: 40%;
+  width: 90%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.PostTitle {
+  font-weight: 200;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.PostContainerWhite {
+  background: #F4F4F4;
+  margin: 20px 20px 20px 20px;
+  padding: 20px;
+}
+
+.Steps {
+  padding-right: 50px;
+  padding-bottom: 80px;
+}
+
+.EditDeleteButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 19px;
+}
+
+.EditButton {
+  padding: 5px 30px;
+  margin: 10px 0px
+}
+
+.DeleteButton {
+  padding: 5px 30px;
+  margin: 10px 0px
+}
