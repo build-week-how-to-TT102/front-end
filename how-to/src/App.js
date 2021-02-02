@@ -6,9 +6,11 @@ import Login from './Components/Login';
 //import SubmitPost from './Components/SubmitPost';
 
 import './App.css';
+import Homepage from './Components/Homepage'
 
 function App() {
   return (
+<<<<<<< HEAD
     <>
       <div className="App">
         <Router>
@@ -31,6 +33,11 @@ function App() {
       
       </div>
     </>
+=======
+    <div className="App">
+      <Homepage />
+    </div>
+>>>>>>> e77736883c027f6746225387d9e61dd04eb0b430
   );
 }
 
