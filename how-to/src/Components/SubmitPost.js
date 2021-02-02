@@ -74,6 +74,12 @@ const SubmitPost = () => {
                 />
               </Inputs>
             </label>
+            <label>
+              Content
+              <Inputs>
+                <textarea name="content" id="content" type="text" />
+              </Inputs>
+            </label>
             <ButtonToggle
               disabled={isButtonDisabled}
               color="info"
