@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //importing components
 import Main from './Components/Main';
 import Login from './Components/Login';
-import SubmitPost from './Components/SubmitPost';
+//import SubmitPost from './Components/SubmitPost';
 
 import './App.css';
 
