@@ -22,29 +22,19 @@ const RegisterPrompt = styled.h2`
 const Inputs = styled.div`
   margin-bottom: 18px;
   input {
-  width: 275px;
+    width: 275px;
   }
 `;
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
-    email: "",
     username: "",
     password: "",
-    confirmPassword: "",
-    userRole: "",
   });
 
   const [errors, setErrors] = useState({
-    fname: "",
-    lname: "",
-    email: "",
     username: "",
     password: "",
-    confirmPassword: "",
-    userRole: "",
   });
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -71,15 +61,8 @@ const Register = () => {
   };
 
   const formSchema = yup.object().shape({
-    fname: yup.string().required("Frist name is required"),
-    lname: yup.string().required("Last name is required"),
-    email: yup
-      .string()
-      .email("Not a valid email")
-      .required("Email is required"),
     username: yup.string().required("Username is required"),
     password: yup.string().required("Please create a password"),
-    confirmPassword: yup.string().required("Please confirm password"),
   });
 
   useEffect(() => {
@@ -94,10 +77,6 @@ const Register = () => {
     formSchema.isValid(formData).then((valid) => {
       if (!valid) return;
     });
-    if (formData.password !== formData.confirmPassword) {
-      setErrors({ ...errors, confrimPassword: "Passwords do not match" });
-      return;
-    }
   };
 
   return (
@@ -106,46 +85,7 @@ const Register = () => {
         <div>
           <Form onSubmit={onSubmit}>
             <RegisterPrompt>Register Now!</RegisterPrompt>
-            <label htmlFor="fname">
-              First Name
-              <Inputs>
-                <input
-                  onChange={onInputChange}
-                  name="fname"
-                  id="fname"
-                  type="text"
-                  value={formData.fname}
-                  placeholder="First name"
-                />
-              </Inputs>
-            </label>
 
-            <label htmlFor="lname">
-              Last Name
-              <Inputs>
-                <input
-                  onChange={onInputChange}
-                  name="lname"
-                  id="lname"
-                  type="text"
-                  value={formData.lname}
-                  placeholder="Lirst name"
-                />
-              </Inputs>
-            </label>
-            <label htmlFor="email">
-              Email
-              <Inputs>
-                <input
-                  onChange={onInputChange}
-                  name="email"
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  placeholder="Email address"
-                />
-              </Inputs>
-            </label>
             <label htmlFor="username">
               Create Username
               <Inputs>
@@ -168,23 +108,11 @@ const Register = () => {
                   id="password"
                   type="password"
                   value={formData.password}
-                  placeholder="Enter password"
+                  placeholder="Password"
                 />
               </Inputs>
             </label>
-            <label htmlFor="confirmPassword">
-              Confirm Password
-              <Inputs>
-                <input
-                  onChange={onInputChange}
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  placeholder="Re-enter password"
-                />
-              </Inputs>
-            </label>
+
             <ButtonToggle
               disabled={isButtonDisabled}
               color="info"

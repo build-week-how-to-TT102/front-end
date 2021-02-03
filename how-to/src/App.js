@@ -3,11 +3,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //importing components
 import Main from './Components/Main';
-import Login from './Components/Login';
+import Register from "./Components/Register"
+// import Login from './Components/Login';
 //import SubmitPost from './Components/SubmitPost';
 
 import './App.css';
-import Homepage from './Components/Homepage'
+// import Homepage from './Components/Homepage/Homepage'
 
 function App() {
   return (
@@ -17,11 +18,11 @@ function App() {
           <Switch>
 
             <Route exact path={'/'}>
-              <Main/> {/*Only routing, no props*/}
+              {/* <Main/> Only routing, no props */}
             </Route>
 
-            <Route path={'/Login'}>
-              <Login/>
+            <Route path={'/Register'}>
+            <Register />
             </Route>
 
             {/*<Route path={'/SubmitPost'}>
