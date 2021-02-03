@@ -1,43 +1,44 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //importing components
 import Main from './Components/Main';
-import Login from './Components/Login';
-//import SubmitPost from './Components/SubmitPost';
+import Login from './Components/LogIn';
+import Homepage from './Components/HomePage/Homepage.js'
+import Register from "./Components/Register";
+import SubmitPost from "./Components/SubmitPost";
 
-import './App.css';
-import Homepage from './Components/Homepage'
+import "./App.css";
 
 function App() {
   return (
-<<<<<<< HEAD
     <>
       <div className="App">
         <Router>
           <Switch>
+            <Route exact path={"/"}>
+              <Main/>
+            </Route>
 
-            <Route exact path={'/'}>
-              <Main/> {/*Only routing, no props*/}
+            <Route path={'/homepage'}>
+              <Homepage />
             </Route>
 
             <Route path={'/Login'}>
               <Login/>
             </Route>
 
-            {/*<Route path={'/SubmitPost'}>
-              <SubmitPost/>
-              </Route>*/}
+            <Route path={'/register'}>
+              <Register />
+            </Route>
+
+            <Route path={"/submit"}>
+              <SubmitPost />
+            </Route>
 
           </Switch>
         </Router>
-      
       </div>
     </>
-=======
-    <div className="App">
-      <Homepage />
-    </div>
->>>>>>> e77736883c027f6746225387d9e61dd04eb0b430
   );
 }
 
