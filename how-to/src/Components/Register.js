@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
 import { Container, Form, ButtonToggle } from "reactstrap";
 import styled from "styled-components";
+import axios from "axios";
 
 const CustomBox = styled.div`
   width: 400px;
@@ -12,7 +12,7 @@ const CustomBox = styled.div`
   border: 10px;
 `;
 
-const SubmitPrompt = styled.h2`
+const RegisterPrompt = styled.h2`
   color: purple;
   width: 100%;
   margin-bottom: 20px;
@@ -26,15 +26,15 @@ const Inputs = styled.div`
   }
 `;
 
-const SubmitPost = () => {
-  const [newPost, setNewPost] = useState({
-    title: "",
-    content: "",
+const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({
-    title: "",
-    content: "",
+    username: "",
+    password: "",
   });
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -53,28 +53,28 @@ const SubmitPost = () => {
   };
 
   const onInputChange = (e) => {
-    setNewPost({
-      ...newPost,
+    setFormData({
+      ...formData,
       [e.target.name]: e.target.value,
     });
     validateChange(e);
   };
 
   const formSchema = yup.object().shape({
-    title: yup.string().required("Please name your how-to"),
-    content: yup.string().required("Please share how-to"),
+    username: yup.string().required("Username is required"),
+    password: yup.string().required("Please create a password"),
   });
 
   useEffect(() => {
-    formSchema.isValid(newPost).then((valid) => {
+    formSchema.isValid(formData).then((valid) => {
       console.log("valid?", valid);
       setIsButtonDisabled(!valid);
     });
-  }, [newPost, formSchema]);
+  }, [formData, formSchema]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    formSchema.isValid(newPost).then((valid) => {
+    formSchema.isValid(formData).then((valid) => {
       if (!valid) return;
     });
   };
@@ -84,35 +84,41 @@ const SubmitPost = () => {
       <Container>
         <div>
           <Form onSubmit={onSubmit}>
-            <SubmitPrompt>Submit Post</SubmitPrompt>
-            <label>
-              Name Your How-To!
+            <RegisterPrompt>Register Now!</RegisterPrompt>
+
+            <label htmlFor="username">
+              Create Username
               <Inputs>
                 <input
-                  name="title"
-                  id="title"
-                  type="text"
                   onChange={onInputChange}
+                  name="username"
+                  id="username"
+                  type="text"
+                  value={formData.username}
+                  placeholder="Username"
                 />
               </Inputs>
             </label>
-            <label>
-              Share How-To!
+            <label htmlFor="password">
+              Create Password
               <Inputs>
-                <textarea
-                  name="content"
-                  id="content"
-                  type="text"
+                <input
                   onChange={onInputChange}
+                  name="password"
+                  id="password"
+                  type="password"
+                  value={formData.password}
+                  placeholder="Password"
                 />
               </Inputs>
             </label>
+
             <ButtonToggle
               disabled={isButtonDisabled}
               color="info"
               type="submit"
             >
-              Post
+              Submit
             </ButtonToggle>
           </Form>
         </div>
@@ -121,4 +127,4 @@ const SubmitPost = () => {
   );
 };
 
-export default SubmitPost;
+export default Register;
