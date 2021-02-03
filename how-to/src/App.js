@@ -2,15 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //importing components
 import Main from './Components/Main';
-import Login from './Components/Login';
+import Homepage from './Components/HomePage/Homepage'
+import LogIn from './Components/LogIn';
 //import SubmitPost from './Components/SubmitPost';
 
 import './App.css';
-import Homepage from './Components/Homepage'
 
 function App() {
   return (
-<<<<<<< HEAD
     <>
       <div className="App">
         <Router>
@@ -20,8 +19,12 @@ function App() {
               <Main/> {/*Only routing, no props*/}
             </Route>
 
+            <Route exact path={'/Homepage'}>
+              <Homepage/> {/*Only routing, no props*/}
+            </Route>
+
             <Route path={'/Login'}>
-              <Login/>
+              <LogIn/>
             </Route>
 
             {/*<Route path={'/SubmitPost'}>
@@ -33,11 +36,6 @@ function App() {
       
       </div>
     </>
-=======
-    <div className="App">
-      <Homepage />
-    </div>
->>>>>>> e77736883c027f6746225387d9e61dd04eb0b430
   );
 }
 

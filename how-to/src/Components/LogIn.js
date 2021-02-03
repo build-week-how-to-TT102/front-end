@@ -36,6 +36,7 @@ export default function Login() {
             .post('https://build-week-how-to-tt102.herokuapp.com/api/auth/login', formState) 
             .then(response => {
                 console.log('I am logging in: ', response.data)
+                response.data.id
             })
             setFormState(formState)
     };

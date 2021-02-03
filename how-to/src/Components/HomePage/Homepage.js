@@ -1,4 +1,6 @@
 import React from 'react';
+import Edit from "./Edit"
+
 import './Homepage.css'
 
 const Homepage = () => {
