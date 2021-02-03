@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { Container, Form, ButtonToggle } from "reactstrap";
@@ -32,52 +32,79 @@ const SubmitPost = () => {
     content: "",
   });
 
-  const [postErrors, setPostErrors] = useState({
+  const [errors, setErrors] = useState({
     title: "",
     content: "",
   });
 
-  const [selectImage, setSelectImage] = useState(null);
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("file", selectImage);
+  const validateChange = (e) => {
+    e.persist();
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) => {
+        setErrors({ ...errors, [e.target.name]: "" });
+      })
+      .catch((err) => {
+        setErrors({ ...errors, [e.target.name]: err.errors[0] });
+      });
+  };
 
-  // axios
-  //   .post(UPLOAD_URL, formData)
-  //   .then((res) => {
-  //     alert("File Upload Successful");
-  //   })
-  //   .catch((err) => alert("Upload not successful"));
+  const onInputChange = (e) => {
+    setNewPost({
+      ...newPost,
+      [e.target.name]: e.target.value,
+    });
+    validateChange(e);
+  };
+
+  const formSchema = yup.object().shape({
+    title: yup.string().required("Please name your how-to"),
+    content: yup.string().required("Please share how-to"),
+  });
+
+  useEffect(() => {
+    formSchema.isValid(newPost).then((valid) => {
+      console.log("valid?", valid);
+      setIsButtonDisabled(!valid);
+    });
+  }, [newPost, formSchema]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    formSchema.isValid(newPost).then((valid) => {
+      if (!valid) return;
+    });
+  };
 
   return (
     <CustomBox>
       <Container>
         <div>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <SubmitPrompt>Submit Post</SubmitPrompt>
             <label>
-              Title
-              <Inputs>
-                <input name="title" id="title" type="text" />
-              </Inputs>
-            </label>
-            <label>
-              Add Image
+              Name Your How-To!
               <Inputs>
                 <input
-                  type="file"
-                  value={selectImage}
-                  onChange={(e) => setSelectImage(e.target.files[0])}
+                  name="title"
+                  id="title"
+                  type="text"
+                  onChange={onInputChange}
                 />
               </Inputs>
             </label>
             <label>
-              Content
+              Share How-To!
               <Inputs>
-                <textarea name="content" id="content" type="text" />
+                <textarea
+                  name="content"
+                  id="content"
+                  type="text"
+                  onChange={onInputChange}
+                />
               </Inputs>
             </label>
             <ButtonToggle
