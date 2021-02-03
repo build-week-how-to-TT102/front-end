@@ -4,13 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './Components/Main';
 import Login from './Components/Login';
 //import SubmitPost from './Components/SubmitPost';
+import Homepage from './Components/Homepage/Homepage'
 
 import './App.css';
-import Homepage from './Components/Homepage'
 
 function App() {
   return (
-<<<<<<< HEAD
     <>
       <div className="App">
         <Router>
@@ -18,6 +17,10 @@ function App() {
 
             <Route exact path={'/'}>
               <Main/> {/*Only routing, no props*/}
+            </Route>
+
+            <Route path={'/homepage'}>
+              <Homepage />
             </Route>
 
             <Route path={'/Login'}>
@@ -33,11 +36,6 @@ function App() {
       
       </div>
     </>
-=======
-    <div className="App">
-      <Homepage />
-    </div>
->>>>>>> e77736883c027f6746225387d9e61dd04eb0b430
   );
 }
 
