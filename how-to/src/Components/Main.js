@@ -29,7 +29,7 @@ export default function Main () {
     return(
         <>
         <Card>
-            <CardImg top width='100%' src='https://images.unsplash.com/photo-1564678043463-cb44638ea0e2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000' alt='Flower picture'/>
+            <CardImg top width='100%' src='https://images.unsplash.com/photo-1564678043463-cb44638ea0e2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=6000' alt='Flower picture' class='img'/>
             
             <CardBody>
                 <div className='Main'>
@@ -53,6 +53,6 @@ export default function Main () {
     );
 }
 
-//Will add in the Register button
+
 
 
