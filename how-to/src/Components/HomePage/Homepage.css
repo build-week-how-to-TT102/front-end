@@ -32,7 +32,6 @@ nav {
 .PostContainer {
   display: flex;
   justify-content: center;
-  position: absolute;
   width: 90%;
   height: 100%;
   margin-left: 5%;

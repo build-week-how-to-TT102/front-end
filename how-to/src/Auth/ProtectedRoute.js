@@ -1,20 +1,20 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from "react"
+import { Redirect, Route } from "react-router-dom"
 
-
-export default function ProtectedRoute(props) {
-  const { component: Component, ...rest } = props;
-
-  return (
-    <Route
+const PrivateRoute = ({ component: CoolComponent, ...rest}) => {
+  return(
+    <Route 
       {...rest}
-      render={renderProps => {
-        if (localStorage.getItem("token")) {
-          return <Component {...renderProps} />;
-        } else {
-          return <Redirect to="/login" />;
-        }
-      }}
+        render={(CoolProps) => {
+          if(localStorage.getItem("token")){
+            return(<CoolComponent {...CoolProps}/>)
+          } else {
+            return(<Redirect to="/login"/>)
+          }
+        }}
+    
     />
-  );
+  )
 }
+
+export default PrivateRoute;

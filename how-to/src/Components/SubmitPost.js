@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as yup from "yup";
-import axios from "axios";
 import { Container, Form, ButtonToggle } from "reactstrap";
+import { useHistory } from 'react-router-dom';
+import MyContextProvider from "../ContextAPI/MyContextProvider"
 import styled from "styled-components";
+import axiosWithAuth from "../Auth/axiosWithAuth";
 
 const CustomBox = styled.div`
   width: 400px;
@@ -26,15 +28,17 @@ const Inputs = styled.div`
   }
 `;
 
-const SubmitPost = () => {
+
+const SubmitPost = (props) => {
+  const {id} = useContext(MyContextProvider)
   const [newPost, setNewPost] = useState({
     title: "",
-    content: "",
+    description: "",
   });
 
   const [errors, setErrors] = useState({
     title: "",
-    content: "",
+    description: "",
   });
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -62,7 +66,7 @@ const SubmitPost = () => {
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Please name your how-to"),
-    content: yup.string().required("Please share how-to"),
+    description: yup.string().required("Please share how-to"),
   });
 
   useEffect(() => {
@@ -72,11 +76,19 @@ const SubmitPost = () => {
     });
   }, [newPost, formSchema]);
 
+  const submitHistory = useHistory()
+
   const onSubmit = async (e) => {
     e.preventDefault();
     formSchema.isValid(newPost).then((valid) => {
       if (!valid) return;
     });
+
+    axiosWithAuth()
+      .post(`/api/users/${id}`, newPost)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    submitHistory.push("/Homepage")
   };
 
   return (
@@ -100,8 +112,8 @@ const SubmitPost = () => {
               Share How-To!
               <Inputs>
                 <textarea
-                  name="content"
-                  id="content"
+                  name="description"
+                  id="description"
                   type="text"
                   onChange={onInputChange}
                 />

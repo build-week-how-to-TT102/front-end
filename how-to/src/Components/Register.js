@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { Container, Form, ButtonToggle } from "reactstrap";
 import styled from "styled-components";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const CustomBox = styled.div`
   width: 400px;
@@ -27,6 +28,7 @@ const Inputs = styled.div`
 `;
 
 const Register = () => {
+  
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -72,11 +74,21 @@ const Register = () => {
     });
   }, [formData, formSchema]);
 
+  const submitHistory = useHistory()
+
   const onSubmit = async (e) => {
+    console.log(formData)
     e.preventDefault();
     formSchema.isValid(formData).then((valid) => {
       if (!valid) return;
     });
+
+    axios
+      .post(`https://build-week-how-to-tt102.herokuapp.com/api/auth/register`, formData)
+      .then(res => {console.log(res)
+        submitHistory.push("/Login")
+      })
+      .catch(err => console.log(err))
   };
 
   return (
