@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  background: #FECDAA;
+  background: #8AA1B1;
   min-height: 100vh;
   padding-top: 2em;
   font-family: 'Yusei Magic', sans-serif;
+  border: 10px solid #42273B ;
+  border-radius: 20px;
 }

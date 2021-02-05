@@ -1,9 +1,24 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import styled from 'styled-components'; 
 import * as yup from "yup";
-import PrivateRoute from "../Auth/ProtectedRoute";
 import MyContextProvider from "../ContextAPI/MyContextProvider";
+
+//STYLED COMPONENTS//
+
+const Welcome = styled.h1`
+    font-size: 2em;
+`;
+
+const Button = styled.button`
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid #DCED31;
+    border-radius: 3px;
+    
+`;
 
 //FORM SCHEMA
 const formSchema = yup.object().shape({
@@ -88,19 +103,20 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <h1>Login</h1>
-        <br></br>
-      </div>
+        <Welcome>
+            <h1>Login</h1>
+            <br></br>
+        </Welcome>
         <form className="form-container" onSubmit={onSubmit}>
           <div className="username">
             <label htmlFor="username">
               Username:
-              <textarea
+              <input
                 name="username"
+                type="text"
                 value={formState.value}
                 onChange={inputChange}
-              ></textarea>
+              />
             </label>
           </div>
 
@@ -109,18 +125,19 @@ const Login = () => {
           <div className="password">
             <label htmlFor="password">
               Password:
-              <textarea
+              <input
                 name="password"
+                type="password"
                 value={formState.value}
                 onChange={inputChange}
-              ></textarea>
+              />
             </label>
           </div>
 
           <br></br>
 
           <div className="submit-button">
-            <button>Log In</button>
+            <Button>Log In</Button>
           </div>
         </form>
     </>
