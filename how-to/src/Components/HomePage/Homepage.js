@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../Auth/axiosWithAuth";
@@ -59,12 +61,10 @@ const Homepage = () => {
       </div>
       
       {howto
-        .filter((titled) => {
+        .filter(function(titled) {
           if (searchBar === "") {
             return titled;
-          } else if (
-            titled.title.toLowerCase().includes(searchBar.toLowerCase())
-          ) {
+          } else if (titled.title.toLowerCase().includes(searchBar.toLowerCase())){
             return titled;
           }
         })
