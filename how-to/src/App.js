@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //importing components
 import Main from './Components/Main';
-import Login from './Components/Login';
 import Homepage from './Components/HomePage/Homepage.js'
 import Register from "./Components/Register";
 import SubmitPost from "./Components/SubmitPost";
 import MyContextProvider from "./ContextAPI/MyContextProvider"
+import Login from './Components/Login';
 
 import "./App.css";
 
