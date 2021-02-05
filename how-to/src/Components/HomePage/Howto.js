@@ -6,7 +6,6 @@ import { Container, Form, ButtonToggle } from "reactstrap";
 
 import "./Homepage.css";
 import axiosWithAuth from "../../Auth/axiosWithAuth";
-import axios from "axios";
 
 const CustomBox = styled.div`
   width: 400px;
