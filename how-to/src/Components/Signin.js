@@ -26,7 +26,7 @@ const formSchema = yup.object().shape({
   password: yup.string().required("Incorrect Password"),
 });
 
-const Login = () => {
+const Signin = () => {
   //STATE
   const submitHistory = useHistory();
 
@@ -144,4 +144,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

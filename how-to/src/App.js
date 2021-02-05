@@ -6,7 +6,7 @@ import Homepage from './Components/HomePage/Homepage.js'
 import Register from "./Components/Register";
 import SubmitPost from "./Components/SubmitPost";
 import MyContextProvider from "./ContextAPI/MyContextProvider"
-import Login from './Components/Login';
+import Signin from "./Components/Signin"
 
 import "./App.css";
 
@@ -29,7 +29,7 @@ function App() {
                 </Route>
 
                 <Route path={'/Login'}> 
-                  <Login />
+                  <Signin />
                 </Route>
 
                 <Route path={'/register'}>
