@@ -1,49 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //importing components
 import Main from './Components/Main';
-import Login from './Components/LogIn';
+import Login from './Components/Login';
 import Homepage from './Components/HomePage/Homepage.js'
 import Register from "./Components/Register";
 import SubmitPost from "./Components/SubmitPost";
+import MyContextProvider from "./ContextAPI/MyContextProvider"
 
 import "./App.css";
 
 function App() {
+  const [id, setId] = useState("")
+
   return (
     <>
       <div className="App">
-        <Router>
-          <Switch>
-            <Route exact path={"/"}>
-              <Main/>
-            </Route>
+        
+          <Router>
+            <MyContextProvider.Provider value={{id, setId}}>
+              <Switch>
+                <Route exact path={"/"}>
+                  <Main/>
+                </Route>
 
-            <Route path={'/homepage'}>
-              <Homepage />
-            </Route>
+                <Route path={'/homepage'}>
+                  <Homepage />
+                </Route>
 
-            <Route exact path={'/Homepage'}>
-              <Homepage/> {/*Only routing, no props*/}
-            </Route>
+                <Route path={'/Login'}> 
+                  <Login />
+                </Route>
 
-            <Route path={'/Login'}>
-              <LogIn/>
-            </Route>
+                <Route path={'/register'}>
+                  <Register />
+                </Route>
 
-            <Route path={'/register'}>
-              <Register />
-            </Route>
-
-            <Route path={"/submit"}>
-              <SubmitPost />
-            </Route>
-
-          </Switch>
-        </Router>
+                <Route path={"/SubmitPost"}>
+                  <SubmitPost />
+                </Route>
+                
+              </Switch>
+            </MyContextProvider.Provider>
+          </Router>
+          
       </div>
     </>
   );
 }
 
 export default App;
+
