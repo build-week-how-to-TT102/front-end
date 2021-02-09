@@ -28,6 +28,11 @@ const Inputs = styled.div`
   }
 `;
 
+const TextStep = styled.textarea`
+  width: 24.3rem;
+  height: 30rem;
+`;
+
 
 const SubmitPost = (props) => {
   const {id} = useContext(MyContextProvider)
@@ -71,7 +76,6 @@ const SubmitPost = (props) => {
 
   useEffect(() => {
     formSchema.isValid(newPost).then((valid) => {
-      console.log("valid?", valid);
       setIsButtonDisabled(!valid);
     });
   }, [newPost, formSchema]);
@@ -86,8 +90,8 @@ const SubmitPost = (props) => {
 
     axiosWithAuth()
       .post(`/api/users/${id}`, newPost)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => (res))
+      .catch(err => (err))
     submitHistory.push("/Homepage")
   };
 
@@ -111,7 +115,7 @@ const SubmitPost = (props) => {
             <label>
               Share How-To!
               <Inputs>
-                <textarea
+                <TextStep
                   name="description"
                   id="description"
                   type="text"

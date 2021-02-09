@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import { Container, Form, ButtonToggle } from "reactstrap";
+import { Container, Form } from "reactstrap";
 import styled from "styled-components";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const CustomBox = styled.div`
   width: 400px;
@@ -27,7 +27,21 @@ const Inputs = styled.div`
   }
 `;
 
+const Button = styled.button`
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid #DCED31;
+    border-radius: 3px;
+    cursor: pointer;
+`;
+
+const AdditionalAreaStyled = styled.div`
+  margin-top: 10px;
+`;
+
 const Register = () => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   
   const [formData, setFormData] = useState({
     username: "",
@@ -38,8 +52,6 @@ const Register = () => {
     username: "",
     password: "",
   });
-
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const validateChange = (e) => {
     e.persist();
@@ -68,8 +80,7 @@ const Register = () => {
   });
 
   useEffect(() => {
-    formSchema.isValid(formData).then((valid) => {
-      console.log("valid?", valid);
+    formSchema.isValid(formData).then((valid) => { 
       setIsButtonDisabled(!valid);
     });
   }, [formData, formSchema]);
@@ -77,7 +88,6 @@ const Register = () => {
   const submitHistory = useHistory()
 
   const onSubmit = async (e) => {
-    console.log(formData)
     e.preventDefault();
     formSchema.isValid(formData).then((valid) => {
       if (!valid) return;
@@ -85,10 +95,10 @@ const Register = () => {
 
     axios
       .post(`https://build-week-how-to-tt102.herokuapp.com/api/auth/register`, formData)
-      .then(res => {console.log(res)
+      .then(res => {
         submitHistory.push("/Login")
       })
-      .catch(err => console.log(err))
+      .catch(err => (err))
   };
 
   return (
@@ -125,13 +135,23 @@ const Register = () => {
               </Inputs>
             </label>
 
-            <ButtonToggle
+            <Button
               disabled={isButtonDisabled}
               color="info"
               type="submit"
             >
               Submit
-            </ButtonToggle>
+            </Button>
+
+          <AdditionalAreaStyled>
+              <h2>Or you can Login or Back to Main Page</h2>
+              <Link to={'/Login'}>
+                <Button>Login</Button>
+              </Link>
+              <Link to={'/'}>
+                <Button>Main Page</Button>
+              </Link>
+          </AdditionalAreaStyled>
           </Form>
         </div>
       </Container>
