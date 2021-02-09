@@ -74,7 +74,6 @@ const Howto = (props) => {
 
   useEffect(() => {
     formSchema.isValid(newPost).then((valid) => {
-      console.log("valid?", valid);
       setIsButtonDisabled(!valid);
     });
   }, [newPost, formSchema]);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //importing components
 import Main from './Components/Main';
@@ -7,7 +7,6 @@ import Register from "./Components/Register";
 import SubmitPost from "./Components/SubmitPost";
 import MyContextProvider from "./ContextAPI/MyContextProvider"
 import Signin from "./Components/Signin"
-import axiosWithAuth from "./Auth/axiosWithAuth"
 
 import "./App.css";
 

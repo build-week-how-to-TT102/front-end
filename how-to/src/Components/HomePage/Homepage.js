@@ -11,8 +11,7 @@ const Homepage = () => {
   const [searchBar, setSearchBar] = useState("");
 
   // Context API
-  const {id} = useContext(MyContextProvider)
-  console.log({id})
+  const { id } = useContext(MyContextProvider)
   
   const submitHistory = useHistory();
 
@@ -33,6 +32,7 @@ const Homepage = () => {
         setHowto(res.data);
       })
       .catch((err) => console.log(err));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -59,7 +59,8 @@ const Homepage = () => {
       </div>
       
       {howto
-        .filter(function(titled) {
+        // eslint-disable-next-line array-callback-return
+        .filter((titled) => {
           if (searchBar === "") {
             return titled;
           } else if (titled.title.toLowerCase().includes(searchBar.toLowerCase())){
