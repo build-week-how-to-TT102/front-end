@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from 'styled-components'; 
 import * as yup from "yup";
 import MyContextProvider from "../ContextAPI/MyContextProvider";
@@ -16,8 +16,12 @@ const Button = styled.button`
     margin: 1em;
     padding: 0.25em 1em;
     border: 2px solid #DCED31;
-    border-radius: 3px;
-    
+    border-radius: 3px;  
+    cursor: pointer;
+`;
+
+const AdditionalAreaStyled = styled.div`
+  margin-top: 10px;
 `;
 
 //FORM SCHEMA
@@ -50,7 +54,6 @@ const Signin = () => {
   //SUBMIT FUNCTION - for login info
   const onSubmit = (evt) => {
     evt.preventDefault();
-    console.log("Submitted Login");
 
     axios
       .post(
@@ -64,7 +67,7 @@ const Signin = () => {
         submitHistory.push("/Homepage");
         // LoggingID.userID(response.data.id)
       })
-      .catch((err) => console.log(err));
+      .catch((err) => (err));
     setFormState({ username: "", password: "" });
   };
 
@@ -84,7 +87,6 @@ const Signin = () => {
         });
       })
       .catch((err) => {
-        console.log(err.errors);
         setErrorState({
           ...errorState,
           [evt.target.name]: err.errors[0],
@@ -139,6 +141,16 @@ const Signin = () => {
           <div className="submit-button">
             <Button>Log In</Button>
           </div>
+          
+          <AdditionalAreaStyled>
+            <h2>Or you can Create a Account or Back to Main Page</h2>
+            <Link to={'/Register'}>
+              <Button>Register</Button>
+            </Link>
+            <Link to={'/'}>
+              <Button>Main Page</Button>
+            </Link>
+      </AdditionalAreaStyled>
         </form>
     </>
   );

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable array-callback-return */
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../Auth/axiosWithAuth";
